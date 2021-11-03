@@ -1,0 +1,24 @@
+parameters:
+  azureSubscriptionEndpoint: ''
+  azureResourceGroup: ''
+  kubernetesCluster: ''
+  releaseName: ''
+  chartPath: ''
+
+
+
+
+
+steps:
+- task: HelmDeploy@0
+  displayName: Helm upgrade
+  inputs:
+    azureSubscriptionEndpoint: ${{ parameters.azureSubscriptionEndpoint }}
+    azureResourceGroup: ${{ parameters.azureResourceGroup }}
+    kubernetesCluster: ${{ parameters.kubernetesCluster }}
+    command: upgrade
+    chartType: filepath
+    chartPath: ${{ parameters.chartPath }}
+    releaseName: ${{ parameters.releaseName }}
+    install: true
+    waitForExecution: false

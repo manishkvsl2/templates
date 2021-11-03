@@ -1,0 +1,15 @@
+parameters:
+  dockerRegistryServiceConnection: ''
+  imageRepositoy: ''
+  dockerfilepath: ''
+  tag1: ''
+
+steps:
+- task: Docker@2
+  displayName: Build and push an image to container registry
+  inputs:
+    command: buildAndPush
+    repository: ${{ parameters.imageRepositoy }}
+    dockerfile: ${{ parameters.dockerfilepath }}
+    containerRegistry: ${{ parameters.dockerRegistryServiceConnection }}
+    tags: ${{ parameters.tag1 }}
